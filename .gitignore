@@ -396,3 +396,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.svn
+.svn*
+/src/CustomControls/.svn
+.svn/*
+.svn
+/src/CustomControls/.svn
+/src/CustomControls/.svn
+*.svn-base
+*.svn-base

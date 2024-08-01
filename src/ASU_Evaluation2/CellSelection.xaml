@@ -1,0 +1,90 @@
+﻿<Window xmlns:my="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"   x:Class="ASU_Evaluation2.CellSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:local ="clr-namespace:ASU_Evaluation2"
+        Title="CellSelection" Height="1173" Width="511" Loaded="Window_Loaded">
+
+
+
+    <Grid>
+        <TabControl Name="TabControl1" >
+
+            <TabItem Header="Listings" Name="tabItem1">
+                <TreeView Name="DataTree" SelectedItemChanged="DataTree_SelectedItemChanged">
+            <TreeView.Resources>
+                <local:BoolConverter x:Key="BoolToOppositeBoolConverter_ValueConverter"/>
+
+                <HierarchicalDataTemplate DataType="{x:Type local:Machine}" ItemsSource="{Binding Years}">
+                    <TextBlock Text="{Binding Path=Name}" FontSize="15"  Foreground="White"/>
+                </HierarchicalDataTemplate>
+
+                <HierarchicalDataTemplate DataType="{x:Type local:Year}" ItemsSource="{Binding Months}">
+                    <TextBlock Text="{Binding Path=Name}" FontSize="15" Foreground="White"/>
+                </HierarchicalDataTemplate>
+
+                <HierarchicalDataTemplate DataType="{x:Type local:Month}" ItemsSource="{Binding Days}">
+                    <TextBlock Text="{Binding Path=Name}" FontSize="15" Foreground="White"/>
+                </HierarchicalDataTemplate>
+
+                <HierarchicalDataTemplate DataType="{x:Type local:Day}" ItemsSource="{Binding DataSets}">
+                    <TextBlock Text="{Binding Path=Name}" FontSize="15" Foreground="White"/>
+                </HierarchicalDataTemplate>
+
+                <DataTemplate DataType="{x:Type local:Dataset}"  >
+                    <Grid Margin="4" Width="260">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="160" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="150" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding DatasetName}" FontWeight="Bold"   Foreground="White"/>
+                       
+                        <Image Width="120" Height="120" Grid.Row="2"  Margin="3,3" Source="{Binding ExampleImage}" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="100" MinHeight="100"/>
+                        <StackPanel Grid.Column="1" Grid.Row="1"   Margin="3,3" Name="stackPanel1" >
+                            <ToggleButton Name="Recon_Succeed" Content="Recon Succeded" IsChecked="{Binding Recon_Succeeded, Converter={StaticResource BoolToOppositeBoolConverter_ValueConverter}, Mode=OneTime}"/>
+                            <ToggleButton Name="Cell_Good" Content="Cell Good" IsChecked="{Binding Cell_Good, Converter={StaticResource BoolToOppositeBoolConverter_ValueConverter}}"/>
+                            <ToggleButton Name="Recon_Good" Content="Recon Good" IsChecked="{Binding Recon_Good, Converter={StaticResource BoolToOppositeBoolConverter_ValueConverter}}"/>
+                                    <ToggleButton Name="Stain_Good" Content="Stain Good" IsChecked="{Binding GoodStain, Converter={StaticResource BoolToOppositeBoolConverter_ValueConverter}}"/>
+                                    
+                                    <Label Content="Evaluation Date" />
+                                    <Label Content="{Binding EvaluationDate}" Foreground="White"/>
+                                    <Label Content="Evaluator" />
+                                    <Label Content="{Binding Evaluator}" Foreground="White"/>
+                                </StackPanel>
+
+                    </Grid>
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+            </TabItem>
+            <TabItem Header="By Date" Name="tabItem3">
+                <StackPanel>
+                    <Label Content="From Date" Foreground="White" Margin ="10"/>
+                    <DatePicker Margin="10" Name="dSearchFrom"/>
+                    <Label Content="To Date" Foreground="White" Margin ="10"/>
+                    <DatePicker Margin="10" Name="bSearchTo"/>
+                    <Button Name="bSearchDate" Margin="10"  Content="Search" Click="bSearch_Click" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="By Cell" Name="tabItem4">
+                <StackPanel>
+                    <ListBox Name="lCellTypes" Margin="10" Height="255">
+                       
+                    </ListBox>
+                    <Button Name="bSearchCellType" Margin="10"  Content="Search" Click="bSearch_Click" />
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Advanced" Name="tabItem2">
+                <StackPanel>
+                    <TextBox Name="tbSqlStatement" Foreground="White" Margin ="10" CaretBrush="White" Height="255" Width="459" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+                    <Button Name="bSearch" Margin="10"  Content="Search" Click="bSearch_Click" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

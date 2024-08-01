@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D3531DA2-D180-4C2C-B0CB-18B7CD20D3CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImageProcessing</RootNamespace>
+    <AssemblyName>ImageProcessing</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BitMiracle.LibTiff.NET">
+      <HintPath>bin\Debug\BitMiracle.LibTiff.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="CSharpFITS_v1.1">
+      <HintPath>..\..\..\3rd Party\CSharpFITS_v1.1_dll\CSharpFITS_v1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ILNumerics64">
+      <HintPath>..\bin\Debug\ILNumerics64.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.mummy.Runtime, Version=1.0.2.599, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\Debug\Kitware.mummy.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Kitware.VTK, Version=5.8.0.607, Culture=neutral, PublicKeyToken=995c7fb9db2c1b44, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\bin\Debug\Kitware.VTK.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleITKCSharpManaged">
+      <HintPath>..\..\..\3rdParty\ITK\SimpleITKCSharpManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArraysToBitmaps.cs" />
+    <Compile Include="BlobFinding\Blob.cs" />
+    <Compile Include="BlobFinding\CenterOfGravity.cs" />
+    <Compile Include="BlobFinding\Watershed.cs" />
+    <Compile Include="ImageFileLoader.cs" />
+    <Compile Include="Segmentation\FillHoles.cs" />
+    <Compile Include="Segmentation\LevelSets.cs" />
+    <Compile Include="Segmentation\Otsu.cs" />
+    <Compile Include="Statistics\ImageStatistics.cs" />
+    <Compile Include="_2D\Convolution.cs" />
+    <Compile Include="_2D\Deconvolution.cs" />
+    <Compile Include="_2D\FocusScores.cs" />
+    <Compile Include="_2D\ImageManipulation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_2D\MotionRegistration.cs" />
+    <Compile Include="_2D\MovieMaker.cs" />
+    <Compile Include="_2D\Registration.cs" />
+    <Compile Include="_2D\TV.cs" />
+    <Compile Include="_3D\ArrayToBitmap3D.cs" />
+    <Compile Include="_3D\ConvertToVTK.cs" />
+    <Compile Include="_3D\Filters3D.cs" />
+    <Compile Include="_3D\Point3D.cs" />
+    <Compile Include="_3D\ScrubVolume.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\libemgucv-windows-x64-2.3.0.1416-1\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7C2C5325-8235-4A24-9C67-6BD79A4679E2}</Project>
+      <Name>Emgu.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathLibrary\MathLibrary.csproj">
+      <Project>{D8C8F367-2808-41E0-9370-FC1B28BABF5D}</Project>
+      <Name>MathLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{117E84DF-22B8-4D62-A253-795CE165CCD7}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
